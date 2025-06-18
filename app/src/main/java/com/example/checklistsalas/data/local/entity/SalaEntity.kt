@@ -11,5 +11,5 @@ class SalaEntity (
     val site: String,
     val andar: String,
     val estado: String,
-    val checklistConcluido: Boolean = false
+    val checklistConcluido: Boolean = false,
 )

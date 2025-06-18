@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: SalaRepository
-) : ViewModel(){
+) : ViewModel() {
 
     val salas: StateFlow<List<Sala>> = repository
         .getSalas()
@@ -23,6 +23,7 @@ class MainViewModel @Inject constructor(
             SharingStarted.WhileSubscribed(),
             emptyList()
         )
+
     fun marcarComoConcluida(sala: Sala) {
         viewModelScope.launch {
             repository.atualizarSala(sala.copy(checklistConcluido = true))

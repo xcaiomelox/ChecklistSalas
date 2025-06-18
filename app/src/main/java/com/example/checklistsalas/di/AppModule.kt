@@ -33,7 +33,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSalaRepository(): SalaRepository {
-        return SalaRepositoryImpl()
+    fun provideSalaRepository(salaDao: SalaDao): SalaRepository {
+        return SalaRepositoryImpl(salaDao)
     }
 }

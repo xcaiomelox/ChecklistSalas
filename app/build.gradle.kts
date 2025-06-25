@@ -29,11 +29,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     kapt {
         correctErrorTypes = true
@@ -48,31 +48,23 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:${libs.versions.hilt.get()}")
-    kapt("com.google.dagger:hilt-compiler:${libs.versions.hilt.get()}")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
-    // Navigation (aqui você pode continuar com o jeito antigo se quiser)
-    implementation("androidx.navigation:navigation-fragment:2.7.7")
-    implementation("androidx.navigation:navigation-ui:2.7.7")
+    // Navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // Room
-    implementation("androidx.room:room-runtime:2.7.0")
-    kapt("androidx.room:room-compiler:2.7.0")
-    implementation("androidx.room:room-ktx:2.7.0")
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     // MVVM / Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.1")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
-
-    // CameraX
-    implementation("androidx.camera:camera-core:${libs.versions.camerax.get()}")
-    implementation("androidx.camera:camera-camera2:${libs.versions.camerax.get()}")
-    implementation("androidx.camera:camera-lifecycle:${libs.versions.camerax.get()}")
-    implementation("androidx.camera:camera-view:${libs.versions.camerax.get()}")
-    implementation("androidx.camera:camera-extensions:${libs.versions.camerax.get()}")
-
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 }

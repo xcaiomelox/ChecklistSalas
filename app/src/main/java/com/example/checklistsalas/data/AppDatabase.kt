@@ -2,14 +2,14 @@ package com.example.checklistsalas.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.checklistsalas.data.local.dao.SalaDao
-import com.example.checklistsalas.data.local.entity.SalaEntity
+import com.example.checklistsalas.data.local.dao.RoomDao
+import com.example.checklistsalas.data.local.entity.RoomEntity
 
 @Database(
-    entities = [SalaEntity::class],
+    entities = [RoomEntity::class],
     version = 1,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun salaDao(): SalaDao
+    abstract fun roomDao(): RoomDao
 }

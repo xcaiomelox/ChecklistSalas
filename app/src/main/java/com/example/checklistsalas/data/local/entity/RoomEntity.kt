@@ -3,13 +3,13 @@ package com.example.checklistsalas.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "salas")
-class SalaEntity (
+@Entity(tableName = "rooms")
+class RoomEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val nome: String,
+    val name: String,
     val site: String,
-    val andar: String,
-    val estado: String,
-    val checklistConcluido: Boolean = false,
+    val floor: String,
+    val state: String,
+    val checklistCompleted: Boolean = false,
 )

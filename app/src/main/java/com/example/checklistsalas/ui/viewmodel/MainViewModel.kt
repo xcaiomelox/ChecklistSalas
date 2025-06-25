@@ -2,8 +2,8 @@ package com.example.checklistsalas.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.checklistsalas.domain.model.Sala
-import com.example.checklistsalas.domain.repository.SalaRepository
+import com.example.checklistsalas.domain.model.Room
+import com.example.checklistsalas.domain.repository.RoomRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -13,20 +13,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: SalaRepository
+    private val repository: RoomRepository
 ) : ViewModel() {
 
-    val salas: StateFlow<List<Sala>> = repository
-        .getSalas()
+    val rooms: StateFlow<List<Room>> = repository
+        .getAllRooms()
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
             emptyList()
         )
 
-    fun marcarComoConcluida(sala: Sala) {
+    fun setCompleted(room: Room) {
         viewModelScope.launch {
-            repository.atualizarSala(sala.copy(checklistConcluido = true))
+            repository.updateRoom(room.copy(checklistCompleted = true))
         }
     }
 }

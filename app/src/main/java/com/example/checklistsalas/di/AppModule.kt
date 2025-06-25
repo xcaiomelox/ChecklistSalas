@@ -1,13 +1,15 @@
 package com.example.checklistsalas.di
 
+import android.content.Context
 import androidx.room.Room
 import com.example.checklistsalas.data.AppDatabase
-import com.example.checklistsalas.data.local.dao.SalaDao
-import com.example.checklistsalas.data.repository.SalaRepositoryImpl
-import com.example.checklistsalas.domain.repository.SalaRepository
+import com.example.checklistsalas.data.local.dao.RoomDao
+import com.example.checklistsalas.data.repository.RoomRepositoryImpl
+import com.example.checklistsalas.domain.repository.RoomRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -17,23 +19,22 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(app: android.app.Application): AppDatabase {
-        return Room.databaseBuilder(
-            app,
-            AppDatabase::class.java,
-            "checklist_sala_db"
-        ).build()
-    }
+    fun provideAppDatabase(
+        @ApplicationContext context: Context,
+    ): AppDatabase = Room.databaseBuilder(
+        context,
+        AppDatabase::class.java,
+        "checklist_db"
+    ).build()
 
     @Provides
-    fun provideSalaDao(appDatabase:
-    AppDatabase): SalaDao {
-        return appDatabase.salaDao()
-    }
+    fun provideRoomDao(
+        appDatabase: AppDatabase,
+    ): RoomDao = appDatabase.roomDao()
 
     @Provides
     @Singleton
-    fun provideSalaRepository(salaDao: SalaDao): SalaRepository {
-        return SalaRepositoryImpl(salaDao)
-    }
+    fun provideRoomRepository(
+        roomDao: RoomDao,
+    ): RoomRepository = RoomRepositoryImpl(roomDao)
 }

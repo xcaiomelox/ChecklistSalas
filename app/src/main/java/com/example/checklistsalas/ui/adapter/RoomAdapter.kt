@@ -13,10 +13,10 @@ class RoomAdapter(
 
     inner class RoomViewHolder(private val binding: ItemRoomBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(room: Room) {
-            binding.textViewDate.text = room.date
+            binding.textViewSite.text = room.site
             binding.textViewName.text = room.name
-            binding.textViewStatus.text = room.status
-            binding.textViewAttempts.text = room.attempts
+            binding.textViewFloor.text = room.floor
+            binding.textViewState.text = room.state
 
             binding.root.setOnClickListener {
                 onItemClick(room)
